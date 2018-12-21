@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<br>
+
+<div class="card" style="max-width: 100rem;">
+<h4 class="card-header">
+Status : {{ details.status }}
+</h4>
+<div class="card-body">
+<h4 class="card-title"><a href={{ value.site_name }}> {{ details.site_name}} </a></h4><br>
+<h6 class="card-text">Description: {{ details.description }}</h6>
+{% if details.content %}
+<h6 class="card-text">Content: {{ details.content }}</h6>
+{% endif %}
+</div>
+<div class="card-footer">
+<p>{{ details.created_at }}</p>
+</div>
+</div>
+<br>
+
+{% if object_no %}
+
+<div>
+  <a href="{% url 'model-one-entry' object_no %}"> Display the Json Content</a>
+  </div>
+
+<div>
+  <a href="{% url 'listentriesforsite' %}?site_name={{ details.site_name }}"> All issues for this webpage</a>
+  </div>
+
+ {% endif %}
+
+
+{% endblock %}

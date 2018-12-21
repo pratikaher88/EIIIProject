@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+<br>
+
+{% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+ {% endif %}
+
+  
+  {% if feedbackvaluescount %}
+
+    <h4 class="mb-3"> Count : {{ feedbackvaluescount }} </h1>
+
+  {% endif %}
+
+  <table class="table table-bordered">
+    <thead class="thead-inverse">
+      <tr>
+        <th class="font-weight-bold">Token</th>
+        <th class="font-weight-bold">Website Name</th>
+        <th class="font-weight-bold">Description</th>
+        <th class="font-weight-bold">Content</th>
+        <th class="font-weight-bold">Status</th>
+        <th class="font-weight-bold">Created at</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for value in feedbackvalues %}
+        <tr>
+          <td><small class="text-muted d-block"" ><a href="{% url 'details-page' value.pk %}">{{ value.Number }}</a></small></td>
+          <td><small class="text-muted d-block"" ><a href={{ value.site_name }}>{{ value.site_name }}</a></small></td>
+          <td style="min-width:200px"><small class="text-muted d-block">{{ value.description }}</small></td>
+          <td><small class="text-muted d-block">{{ value.content }}</small></td>
+          <td><small class="text-muted d-block">{{ value.status }}</small></td>
+          <td style="min-width:50px><small class="text-muted d-block">{{ value.created_at }}</small></td>          
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <br>
+
+{% if feedbackvalues.has_other_pages %}
+  <ul class="pagination">
+    {% if feedbackvalues.has_previous %}
+      <li class="btn btn-outline-info mb-4" ><a href="?page={{ feedbackvalues.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+
+    {% endif %}
+    {% for i in feedbackvalues.paginator.page_range %}
+      {% if feedbackvalues.number == i %}
+        <li class="btn btn-outline-info mb-4" ><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a class="btn btn-outline-info mb-4" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if feedbackvalues.has_next %}
+      <li><a class="btn btn-outline-info mb-4" href="?page={{ feedbackvalues.next_page_number }}">&raquo;</a></li>
+    {% else %}
+
+    {% endif %}
+  </ul>
+{% endif %}
+
+{% endblock %}
