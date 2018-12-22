@@ -51,10 +51,3 @@ def send_email(sender,instance,created,**kwargs):
 		email.send()
 
 		logging.info(instance.status)
-
-
-
-# class UserForEmail(models.Model):
-
-# 	email = models.EmailField(max_length=70)
-# 	datafromfeedback = models.Foreignkey(FeedbackInfoInputModel,on_delete='CASACDE')	

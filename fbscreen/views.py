@@ -67,12 +67,6 @@ def home(request):
 
 	return render(request, 'form_template.html', {'form': form})
 
-
-# class PostDetailView(DetailView):
-# 	model = FeedbackInfoInputModel
-# 	template_name = 'details_page.html'
-# 	context_object_name = 'details'
-
 def emailfetch(request):
 
 	if 'home_request' in request.session:
@@ -110,7 +104,6 @@ def emailfetch(request):
 
 	raise Http404
 
-
 def findstatusofid(request):
 
 	if request.method == 'POST':
@@ -129,12 +122,10 @@ def findstatusofid(request):
 
 	return render(request,'find_status.html',{'id':1})
 
-
 def detailspage(request, pk):
 
 	details = get_object_or_404(FeedbackInfoInputModel,pk=pk)
 	return render(request,'details_page.html',{'details' : details ,'object_no': pk} )
-
 
 def list_entries(request):
 	feedbackvalues = FeedbackInfoInputModel.objects.all()
@@ -168,7 +159,6 @@ def list_entries_for_site(request):
 
 	return render(request,'list_entries.html', {'feedbackvalues': feedbackvalues,'feedbackvaluescount': feedbackvaluescount})
 
-
 class ContentAutoComplete(autocomplete.Select2QuerySetView):
 
 	def get_queryset(self):
@@ -185,7 +175,6 @@ class ContentAutoComplete(autocomplete.Select2QuerySetView):
 			qs = qs.filter(content__istartswith = self.q)
 
 			return qs
-
 
 class ListFeedbackInfoInputModelView(generics.ListAPIView):
     queryset = FeedbackInfoInputModel.objects.all()

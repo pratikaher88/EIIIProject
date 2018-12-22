@@ -27,8 +27,3 @@ class FeedbackInfoInputModelForm(forms.ModelForm):
 			})
 
 	field_order = ['site_name','description', 'request_accessible_version' ,'content' ,'send_automated_data','captcha']
-
-
-# class EmailForm(forms.ModelForm):
-
-# 	form_email = forms.Ema
