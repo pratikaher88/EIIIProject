@@ -6,25 +6,6 @@ from django.db.models.signals import post_save
 from django.core.mail import EmailMessage
 
 
-import logging, logging.config
-import sys
-
-LOGGING = {
-    'version': 1,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-        }
-    },
-    'root': {
-        'handlers': ['console'],
-        'level': 'INFO'
-    }
-}
-
-logging.config.dictConfig(LOGGING)
-
 class FeedbackInfoInputModel(models.Model):
 
 	def random_string():
@@ -44,10 +25,7 @@ class FeedbackInfoInputModel(models.Model):
 @receiver(post_save,sender=FeedbackInfoInputModel)
 def send_email(sender,instance,created,**kwargs):
 
-
 	if instance.status=='Resolved':
 
 		email = EmailMessage('Ticket Status for '+instance.Number, 'Your issue is '+instance.status, to=['pratikaher88@gmail.com'])
 		email.send()
-
-		logging.info(instance.status)

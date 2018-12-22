@@ -4,7 +4,6 @@ from django.http import Http404
 from rest_framework import generics
 from django.http import HttpResponse
 from django.contrib import messages
-from .models import FeedbackInfoInputModel
 from django.conf import settings
 from django.shortcuts import render, redirect,get_object_or_404
 from .forms import FeedbackInfoInputModelForm
@@ -13,25 +12,8 @@ from .serializers import FeedbackInfoInputModelSerializer
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils.datastructures import MultiValueDictKeyError
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,UpdateView,DeleteView
-import logging, logging.config
 from dal import autocomplete
-import sys
 
-LOGGING = {
-    'version': 1,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-        }
-    },
-    'root': {
-        'handlers': ['console'],
-        'level': 'INFO'
-    }
-}
-
-# logging.config.dictConfig(LOGGING)
 
 def home(request):
 
@@ -59,10 +41,10 @@ def home(request):
 
 			else:
 				messages.warning(request, 'Invalid reCAPTCHA. Please try again.')
-
 				return render(request, 'form_template.html', {'form': form})
 
 	else:
+
 		form = FeedbackInfoInputModelForm()
 
 	return render(request, 'form_template.html', {'form': form})
@@ -118,8 +100,6 @@ def findstatusofid(request):
 			messages.warning(request , 'Invalid ID')
 			return redirect('findstatus')
 
-		
-
 	return render(request,'find_status.html',{'id':1})
 
 def detailspage(request, pk):
@@ -128,8 +108,8 @@ def detailspage(request, pk):
 	return render(request,'details_page.html',{'details' : details ,'object_no': pk} )
 
 def list_entries(request):
-	feedbackvalues = FeedbackInfoInputModel.objects.all()
 
+	feedbackvalues = FeedbackInfoInputModel.objects.all()
 	page = request.GET.get('page', 1)
 	paginator = Paginator(feedbackvalues, 5)
 
@@ -170,10 +150,8 @@ class ContentAutoComplete(autocomplete.Select2QuerySetView):
 		# if site_name:
 		# 	qs = qs.filter(site_name=site_name)
 
-
 		if self.q:
 			qs = qs.filter(content__istartswith = self.q)
-
 			return qs
 
 class ListFeedbackInfoInputModelView(generics.ListAPIView):

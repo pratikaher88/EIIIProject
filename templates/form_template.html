@@ -1,15 +1,6 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-{% block head %}
-<link type="text/css" href="/media/jquery-ui-1.8.7.custom/css/ui-lightness/jquery-ui-1.8.7.custom.css" rel="stylesheet" />   
-    <script type="text/javascript" src="/media/jquery-ui-1.8.7.custom/js/jquery-1.4.4.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.5.js"></script>
-    <link type="text/css" href="/media/jquery-ui-1.8.7.custom/jquery.timepicker-1.1.0/jquery.timepicker-1.1.0.css" rel="stylesheet" />   
-    <script type="text/javascript" src="/media/jquery-ui-1.8.7.custom/jquery.timepicker-1.1.0/jquery.timepicker-1.1.0.js"></script>
-    <script type="text/javascript" src="/media/jquery-ui-1.8.7.custom/js/jquery-ui-1.8.7.custom.min.js"></script>
-{% endblock %}
-
 {% block content %}
 
 <br>
@@ -38,24 +29,6 @@
 					document.getElementById('contentfieldid').value='';
     document.getElementById('contentfieldid').disabled = !this.checked;
 };
-
-
-
-				// var cantidadCopias = document.getElementById("requestcheckbox");
-				// // document.getElementById("contentfieldid").style.display='block';
-				// cantidadCopias.checked = true
-
-				// if(cantidadCopias.checked == false) {
-    //     			// cantidadCopias.checked = true; 
-    //     			document.getElementById("contentfieldid").disabled = false;
-   	// 			 }
-   	// 			 else if(cantidadCopias.checked == true){
-   	// 			 	// cantidadCopias.checked = true; 
-    //     			document.getElementById("contentfieldid").disabled = true;
-   	// 			 }
-
-
-
    				</script>
 
 
