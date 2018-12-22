@@ -31,7 +31,7 @@ LOGGING = {
     }
 }
 
-logging.config.dictConfig(LOGGING)
+# logging.config.dictConfig(LOGGING)
 
 def home(request):
 

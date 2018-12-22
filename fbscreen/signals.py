@@ -25,15 +25,3 @@ LOGGING = {
 logging.config.dictConfig(LOGGING)
 
 
-
-# @receiver(post_save,sender=FeedbackInfoInputModel)
-# def send_email(sender,instance,created,**kwargs):
-#     logging.info('Hello')
-
-# 	if instance.status=='Resolved':
-
-
-# 		logging.info('Hello')
-
-		# email = EmailMessage('title', 'body', to='pratikaher88@gmail.com')
-		# email.send()

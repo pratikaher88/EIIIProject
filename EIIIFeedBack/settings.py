@@ -16,12 +16,13 @@ from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'EIIIFeedBack.settings')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'n@p!%snp5^o$_)d*8ofmhsucbzlio2+01f_2u@+8#wfnc@waj!'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG',default=True,cast=bool)
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
     'fbscreen',
     'dal',
     'dal_select2',
+    'logging',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,8 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'crispy_forms',
-
-
 ]
 
 MIDDLEWARE = [
